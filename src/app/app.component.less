@@ -3,4 +3,23 @@
 .mf-app-component {
     color: @brand-color;
     .title;
+
+    height: calc(100% - (@border-width + @header-height + @border-width + @footer-with-border));
+
+    .sized-div {
+        .horizontal-percent-width(30%);
+        background-color: @brand-color;
+
+        &.darken {
+            background-color: darken(@brand-color, 20);
+        }
+
+        &.light {
+            background-color: lighten(@brand-color, 20);
+        }
+
+        &.saturate {
+            background-color: desaturate(@brand-color, 100%);
+        }
+    }
 }
