@@ -1,16 +1,50 @@
 <div class="mf-app-component">
     Hello world!
     <br />
-    <div class="sized-div">
-        &nbsp;
+    {{ myProperty.length }}
+    <div>
+        <i>Ilya</i>
+        <div [innerText]="myProperty"></div>
     </div>
-    <div class="sized-div darken">
-        &nbsp;
+    <div [innerHtml]="htmlProperty"></div>
+
+    <div (click)="onClickMeClick()">Click on me!!</div>
+ 
+    <br />
+    <br />
+
+    <div [innerHtml]="cardMessage"></div>
+
+    <mf-person-card 
+        [personName]="person.name"
+        [personId]="person.id"
+        [personAddress]="person.address"
+        [personEmail]="person.email"
+        (onModeChange)="onCardModeChanged($event)"
+        >
+    </mf-person-card>
+
+    <br />
+    <br />
+
+    <div class="left-pane">
+        <div>Name</div>
+        <div>ID</div>
+        <div>Address</div>
+        <div>Email</div>
     </div>
-    <div class="sized-div light">
-        &nbsp;
-    </div>
-    <div class="sized-div saturate">
-        &nbsp;
+    <div class="right-pane">
+        <div>
+            <input type="text" [(ngModel)]="person.name" />
+        </div>
+        <div>
+            <input type="text" [(ngModel)]="person.id" />
+        </div>
+        <div>
+            <input type="text" [(ngModel)]="person.address" />
+        </div>
+        <div>
+            <input type="text" [(ngModel)]="person.email" />
+        </div>
     </div>
 </div>
