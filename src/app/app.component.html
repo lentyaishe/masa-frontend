@@ -1,36 +1,3 @@
 <div class="mf-app-component">
-    Hello world!
-    <br />
-    {{ myProperty.length }}
-    <div>
-        <i>Ilya</i>
-        <div [innerText]="myProperty"></div>
-    </div>
-    <div [innerHtml]="htmlProperty"></div>
-
-    <div (click)="onClickMeClick()">Click on me!!</div>
- 
-    <br />
-    <br />
-
-    <div [innerHtml]="cardMessage"></div>
-
-    <br />
-    <br />
-
-
-    <mf-person-card *ngFor="let person of persons; index as i"
-        [(personName)]="person.name"
-        [(personId)]="person.id"
-        [(personAddress)]="person.address"
-        [(personEmail)]="person.email"
-        (onModeChange)="onCardModeChanged($event, i)"
-        (onSaveClicked)="onSaveClicked()"
-        >
-    </mf-person-card>
-    
-    <div *ngIf="!persons">No data</div>
-
-    <br />
-    <br />
+    <router-outlet></router-outlet>
 </div>
