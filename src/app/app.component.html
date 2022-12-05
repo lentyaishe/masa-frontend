@@ -15,36 +15,20 @@
 
     <div [innerHtml]="cardMessage"></div>
 
+    {{"Person: " + JSON.stringify(person)}}
+    <br />
+    <br />
+
+
     <mf-person-card 
-        [personName]="person.name"
-        [personId]="person.id"
-        [personAddress]="person.address"
-        [personEmail]="person.email"
+        [(personName)]="person.name"
+        [(personId)]="person.id"
+        [(personAddress)]="person.address"
+        [(personEmail)]="person.email"
         (onModeChange)="onCardModeChanged($event)"
         >
     </mf-person-card>
 
     <br />
     <br />
-
-    <div class="left-pane">
-        <div>Name</div>
-        <div>ID</div>
-        <div>Address</div>
-        <div>Email</div>
-    </div>
-    <div class="right-pane">
-        <div>
-            <input type="text" [(ngModel)]="person.name" />
-        </div>
-        <div>
-            <input type="text" [(ngModel)]="person.id" />
-        </div>
-        <div>
-            <input type="text" [(ngModel)]="person.address" />
-        </div>
-        <div>
-            <input type="text" [(ngModel)]="person.email" />
-        </div>
-    </div>
 </div>

@@ -6,10 +6,28 @@
         <div>Email</div>
     </div>
     <div class="right-pane">
-        <div [innerText]="personName"></div>
-        <div [innerText]="personId"></div>
-        <div [innerText]="personAddress"></div>
-        <div [innerText]="personEmail"></div>
+
+        <div [hidden]="mode !== ViewMode.ReadOnly">
+            <div [innerText]="personName"></div>
+            <div [innerText]="personId"></div>
+            <div [innerText]="personAddress"></div>
+            <div [innerText]="personEmail"></div>
+        </div>
+
+        <div [hidden]="mode !== ViewMode.Edit">
+            <div>
+                <input type="text" [(ngModel)]="personName" (keyup)="onPersonNameChange()" />
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="personId" (keyup)="onPersonIdChange()" />
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="personAddress" (keyup)="onPersonAddressChange()" />
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="personEmail" (keyup)="onPersonEmailChange()" />
+            </div>
+        </div>
     </div>
 
     <div class="clear-both"></div>
