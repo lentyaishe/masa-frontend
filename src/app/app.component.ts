@@ -1,8 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { LocalStorageKeys } from "./constants";
+import { LocalStorageService } from "./core/services/local-storage.service";
 
 interface IPerson {
     name: string;
-    id: string;
+    id: number;
     address: string;
     email: string;
 }
@@ -12,30 +14,40 @@ interface IPerson {
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.less"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = "masa-frontend";
+
+    public JSON = JSON;
+
+    public persons: IPerson[] | null = null;
+    public cardMessage: string = "";
 
     public myProperty: string = "Hooray!!";
     public htmlProperty: string = "<i>La-la!!</i>"
 
-    public JSON = JSON;
+    constructor(
+        private localStorageService: LocalStorageService
+    ) {
+        
+    }
 
-    public person: IPerson = {
-        name: "John Doe",
-        id: "876598769",
-        address: "Somewhere in US",
-        email: "john@doe.com"
-    };
-
-    public cardMessage: string = "";
+    public ngOnInit(): void {
+        this.persons = this.localStorageService.get(LocalStorageKeys.PERSONS);
+    }
 
     public onClickMeClick(): void {
         this.myProperty = "New data!!";
     }
 
-    public onCardModeChanged(isEdit: boolean): void {
+    public onCardModeChanged(isEdit: boolean, index: number): void {
         this.cardMessage = isEdit ?
             "Please, fill the data" :
             "Data saved";
+        
+        // console.log("Index: ", index);
+    }
+
+    public onSaveClicked(): void {
+        this.localStorageService.set(LocalStorageKeys.PERSONS, this.persons);
     }
 }
