@@ -15,19 +15,21 @@
 
     <div [innerHtml]="cardMessage"></div>
 
-    {{"Person: " + JSON.stringify(person)}}
     <br />
     <br />
 
 
-    <mf-person-card 
+    <mf-person-card *ngFor="let person of persons; index as i"
         [(personName)]="person.name"
         [(personId)]="person.id"
         [(personAddress)]="person.address"
         [(personEmail)]="person.email"
-        (onModeChange)="onCardModeChanged($event)"
+        (onModeChange)="onCardModeChanged($event, i)"
+        (onSaveClicked)="onSaveClicked()"
         >
     </mf-person-card>
+    
+    <div *ngIf="!persons">No data</div>
 
     <br />
     <br />

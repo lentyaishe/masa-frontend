@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 enum ViewMode {
   ReadOnly,
@@ -13,18 +13,20 @@ const Save: string = "Save";
   templateUrl: "./person-card.component.html",
   styleUrls: ["./person-card.component.less"]
 })
-export class PersonCardComponent {
+export class PersonCardComponent implements OnInit {
   @Input() personName: string = "";
-  @Input() personId: string = "";
+  @Input() personId: number = 0;
   @Input() personAddress: string = "";
   @Input() personEmail: string = "";
 
   @Output() personNameChange: EventEmitter<string> = new EventEmitter<string>();
-  @Output() personIdChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() personIdChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() personAddressChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() personEmailChange: EventEmitter<string> = new EventEmitter<string>();
+  
   @Output() onModeChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  @Output() onSaveClicked: EventEmitter<void> = new EventEmitter<void>();
+  
   public ViewMode = ViewMode;
 
   public buttonTitle: string = "";
@@ -34,9 +36,19 @@ export class PersonCardComponent {
 
   constructor() {
     this.setButtonTitle();
+
+    console.log("Name in ctor: ", this.personName);
+  }
+
+  public ngOnInit(): void {
+    console.log("Name in OnInit: ", this.personName);
   }
 
   public onToggleModeClick(): void {
+    if (this.mode === ViewMode.Edit) {
+      this.onSaveClicked.emit();
+    }
+
     this.mode = this.mode === ViewMode.ReadOnly ? ViewMode.Edit : ViewMode.ReadOnly;
     this.setButtonTitle();
     this.onModeChange.emit(this.mode === ViewMode.Edit);
