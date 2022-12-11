@@ -20,6 +20,8 @@ export class PersonCardComponent implements OnInit {
   @Input() personAddress: string = "";
   @Input() personEmail: string = "";
   @Input() personGender: string = "";
+  @Input() personBirthdate: Date | undefined;
+  @Input() personSalary: number | undefined;
 
   @Output() personNameChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() personIdChange: EventEmitter<number> = new EventEmitter<number>();

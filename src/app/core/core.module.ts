@@ -8,6 +8,7 @@ import { PersonsPage } from "./pages/persons/persons.page";
 import { NotFoundPage } from "./pages/404/404.page";
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { GenericRadioButtonComponent } from './components/generic-radio-button/generic-radio-button.component';
+import { DoublePipe } from "./pipes/double.pipe";
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },
@@ -20,7 +21,8 @@ const routes: Routes = [
     PersonsPage,
     NotFoundPage,
     RadioButtonComponent,
-    GenericRadioButtonComponent
+    GenericRadioButtonComponent,
+    DoublePipe
   ],
   imports: [
     FormsModule,

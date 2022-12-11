@@ -1,18 +1,25 @@
 <div #optionsWrapper class="mf-generic-radio-button">
-    <div
-         *ngFor="let option of options; index as i"
-         class="option-wrapper"
-         [ngClass]="layout">
+    <div [ngSwitch]="isMultiselect">
+        <div *ngSwitchCase="false">
+            <div
+                *ngFor="let option of options; index as i"
+                class="option-wrapper"
+                [ngClass]="layout">
 
-        <input type="radio" 
-               [id]="unique + i" 
-               [name]="unique" 
-               [value]="option.value"
-               [(ngModel)]="value"
-               (change)="onChange()"
-                />
+                <input type="radio" 
+                    [id]="unique + i" 
+                    [name]="unique" 
+                    [value]="option.value"
+                    [(ngModel)]="value"
+                    (change)="onChange()"
+                        />
 
-        <label class="option-title" [for]="unique + i" [innerText]="option.title"></label>
-    
+                <label class="option-title" [for]="unique + i" [innerText]="option.title"></label>
+            
+            </div>
+        </div>
+        <div *ngSwitchDefault>
+            Multi select implementation
+        </div>
     </div>
 </div>

@@ -5,6 +5,8 @@
         <div>Address</div>
         <div>Email</div>
         <div>Gender</div>
+        <div>Birthdate</div>
+        <div>Salary</div>
     </div>
     <div class="right-pane">
 
@@ -14,6 +16,8 @@
             <div [innerText]="personAddress"></div>
             <div [innerText]="personEmail"></div>
             <div [innerText]="personGender"></div>
+            <div [innerText]="personBirthdate | date : 'dd M yyyy'"></div>
+            <div [innerText]="(personSalary | doubleMe) | currency : 'NIS'"></div>
         </div>
 
         <div [hidden]="mode !== ViewMode.Edit">
