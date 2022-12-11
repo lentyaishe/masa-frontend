@@ -4,6 +4,7 @@
         <div>ID</div>
         <div>Address</div>
         <div>Email</div>
+        <div>Gender</div>
     </div>
     <div class="right-pane">
 
@@ -12,6 +13,7 @@
             <div [innerText]="personId"></div>
             <div [innerText]="personAddress"></div>
             <div [innerText]="personEmail"></div>
+            <div [innerText]="personGender"></div>
         </div>
 
         <div [hidden]="mode !== ViewMode.Edit">
@@ -27,6 +29,11 @@
             <div>
                 <input type="text" [(ngModel)]="personEmail" (keyup)="onPersonEmailChange()" />
             </div>
+
+            <mf-radio-button [options]="genderOptions" 
+                             [(value)]="personGender"
+                             (valueChange)="onPersonGenderChange()"></mf-radio-button>
+
         </div>
     </div>
 

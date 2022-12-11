@@ -6,6 +6,7 @@ import { States } from "../constants";
 import { PersonCardComponent } from "./components/person-card/person-card.component";
 import { PersonsPage } from "./pages/persons/persons.page";
 import { NotFoundPage } from "./pages/404/404.page";
+import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },
@@ -16,7 +17,8 @@ const routes: Routes = [
   declarations: [
     PersonCardComponent,
     PersonsPage,
-    NotFoundPage
+    NotFoundPage,
+    RadioButtonComponent
   ],
   imports: [
     FormsModule,
