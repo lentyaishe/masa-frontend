@@ -15,7 +15,7 @@ export class GenericRadioButtonComponent<T> implements OnInit, AfterViewInit {
 
   @Output() valueChange: EventEmitter<T> = new EventEmitter<T>();
 
-  @ViewChildren("optionsWrapper") optionsWrapper: ElementRef | undefined;
+  @ViewChild("optionsWrapper") optionsWrapper: ElementRef | undefined;
     
   public Layout = Layout;
 
