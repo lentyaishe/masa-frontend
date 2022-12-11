@@ -1,18 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { LocalStorageKeys } from "src/app/constants";
-import { ISelectableOption } from "src/app/entities";
+import { IPerson, ISelectableOption } from "src/app/entities";
 import { Layout } from "src/app/enums";
-import { LocalStorageService } from "../../services/local-storage.service";
-
-interface IPerson {
-  name: string;
-  id: number;
-  address: string;
-  email: string;
-  gender: string;
-  birthdate: Date;
-  salary: number;
-}
+import { PersonService } from "../../services/person.service";
 
 @Component({
   selector: "app-persons.page",
@@ -24,7 +14,6 @@ export class PersonsPage implements OnInit {
   public JSON = JSON;
   public Layout = Layout;
 
-  public persons: IPerson[] | null = null;
   public personOptions: ISelectableOption<IPerson>[] = [];
   public selectedPerson: IPerson | null = null;
 
@@ -37,17 +26,12 @@ export class PersonsPage implements OnInit {
   public htmlProperty: string = "<i>La-la!!</i>"
 
   constructor(
-    private localStorageService: LocalStorageService
+    public personService: PersonService
   ) {
 
   }
 
   public ngOnInit(): void {
-    this.persons = this.localStorageService.get(LocalStorageKeys.PERSONS);
-    this.persons?.forEach((person: IPerson) => {
-      person.birthdate = new Date(person.birthdate)
-    });
-
     this.layoutOptions.push({
       title: Layout.Horizontal,
       value: Layout.Horizontal
@@ -58,15 +42,15 @@ export class PersonsPage implements OnInit {
       value: Layout.Vertical
     });
 
-    if (this.persons) {
-      this.personOptions = this.persons.map((person: IPerson) => {
+    if (this.personService.persons) {
+      this.personOptions = this.personService.persons.map((person: IPerson) => {
         return {
           title: person.name,
           value: person
         };
       });
 
-      this.selectedPerson = this.persons.length > 0 ? this.persons[0] : null;
+      this.selectedPerson = this.personService.persons.length > 0 ? this.personService.persons[0] : null;
     }
   }
 
@@ -83,6 +67,6 @@ export class PersonsPage implements OnInit {
   }
 
   public onSaveClicked(): void {
-    this.localStorageService.set(LocalStorageKeys.PERSONS, this.persons);
+    //this.localStorageService.set(LocalStorageKeys.PERSONS, this.persons);
   }
 }
