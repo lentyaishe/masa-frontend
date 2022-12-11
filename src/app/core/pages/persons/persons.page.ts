@@ -10,6 +10,8 @@ interface IPerson {
   address: string;
   email: string;
   gender: string;
+  birthdate: Date;
+  salary: number;
 }
 
 @Component({
@@ -42,6 +44,9 @@ export class PersonsPage implements OnInit {
 
   public ngOnInit(): void {
     this.persons = this.localStorageService.get(LocalStorageKeys.PERSONS);
+    this.persons?.forEach((person: IPerson) => {
+      person.birthdate = new Date(person.birthdate)
+    });
 
     this.layoutOptions.push({
       title: Layout.Horizontal,

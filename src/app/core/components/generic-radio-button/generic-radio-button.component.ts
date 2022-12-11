@@ -12,6 +12,7 @@ export class GenericRadioButtonComponent<T> implements OnInit, AfterViewInit {
   @Input() value: T | undefined;
   @Input() options: ISelectableOption<T>[] = [];
   @Input() layout: Layout = Layout.Vertical;
+  @Input() isMultiselect: boolean = false;
 
   @Output() valueChange: EventEmitter<T> = new EventEmitter<T>();
 
