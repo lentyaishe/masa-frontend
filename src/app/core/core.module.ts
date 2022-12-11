@@ -9,6 +9,7 @@ import { NotFoundPage } from "./pages/404/404.page";
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { GenericRadioButtonComponent } from './components/generic-radio-button/generic-radio-button.component';
 import { DoublePipe } from "./pipes/double.pipe";
+import { PersonService } from "./services/person.service";
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },
@@ -29,10 +30,14 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-    exports: [
-        PersonCardComponent
-    ]
+  exports: [
+      PersonCardComponent
+  ]
 })
 export class CoreModule {
-
+  constructor(
+    personService: PersonService
+  ) {
+    personService.initialize();
+  }
 }
