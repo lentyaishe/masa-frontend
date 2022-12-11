@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LocalStorageKeys } from "src/app/constants";
+import { ISelectableOption } from "src/app/entities";
+import { Layout } from "src/app/enums";
 import { LocalStorageService } from "../../services/local-storage.service";
 
 interface IPerson {
@@ -18,8 +20,15 @@ interface IPerson {
 export class PersonsPage implements OnInit {
 
   public JSON = JSON;
+  public Layout = Layout;
 
   public persons: IPerson[] | null = null;
+  public personOptions: ISelectableOption<IPerson>[] = [];
+  public selectedPerson: IPerson | null = null;
+
+  public layoutOptions: ISelectableOption<Layout>[] = [];
+  public selectedPersonLayout: Layout = Layout.Vertical;
+
   public cardMessage: string = "";
 
   public myProperty: string = "Hooray!!";
@@ -33,6 +42,27 @@ export class PersonsPage implements OnInit {
 
   public ngOnInit(): void {
     this.persons = this.localStorageService.get(LocalStorageKeys.PERSONS);
+
+    this.layoutOptions.push({
+      title: Layout.Horizontal,
+      value: Layout.Horizontal
+    });
+
+    this.layoutOptions.push({
+      title: Layout.Vertical,
+      value: Layout.Vertical
+    });
+
+    if (this.persons) {
+      this.personOptions = this.persons.map((person: IPerson) => {
+        return {
+          title: person.name,
+          value: person
+        };
+      });
+
+      this.selectedPerson = this.persons.length > 0 ? this.persons[0] : null;
+    }
   }
 
   public onClickMeClick(): void {
