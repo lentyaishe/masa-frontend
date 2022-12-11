@@ -9,7 +9,7 @@
     <div [innerHtml]="htmlProperty"></div>
 
     <div (click)="onClickMeClick()">Click on me!!</div>
-    
+
     <br />
     <br />
 
@@ -24,11 +24,12 @@
         [(personId)]="person.id"
         [(personAddress)]="person.address"
         [(personEmail)]="person.email"
+        [(personGender)]="person.gender"
         (onModeChange)="onCardModeChanged($event, i)"
         (onSaveClicked)="onSaveClicked()"
         >
     </mf-person-card>
-    
+        
     <div *ngIf="!persons">No data</div>
 
     <br />

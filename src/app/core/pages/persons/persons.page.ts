@@ -7,6 +7,7 @@ interface IPerson {
   id: number;
   address: string;
   email: string;
+  gender: string;
 }
 
 @Component({
