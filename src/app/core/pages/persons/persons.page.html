@@ -11,20 +11,23 @@
     <div (click)="onClickMeClick()">Click on me!!</div>
 
     <br />
-    <mf-generic-multiselect 
+    <mf-generic-multiselect
         [options]="layoutOptions"
         [layout]="Layout.Horizontal"
         [isMultiselect]="false"
-        [(value)]="selectedPersonLayout"
+        [value]="selectedPersonLayout"
+        (valueChange)="setOptionValue('selectedPersonLayout', $event)"
         >
     </mf-generic-multiselect>
+    {{selectedPersonLayout}}
 
     <br />
-    <mf-generic-multiselect 
+    <mf-generic-multiselect
         [options]="personOptions"
-        [layout]="selectedPersonLayout[0]"
+        [layout]="selectedPersonLayout"
         [isMultiselect]="true"
-        [(value)]="selectedPersons"
+        [value]="selectedPersons"
+        (valueChange)="setOptionValue('selectedPersons', $event)"
         >
     </mf-generic-multiselect>
     <br />
@@ -47,7 +50,7 @@
         (onSaveClicked)="onSaveClicked()"
         >
     </mf-person-card>
-        
+
     <div *ngIf="!personService.persons">No data</div>
 
     <br />

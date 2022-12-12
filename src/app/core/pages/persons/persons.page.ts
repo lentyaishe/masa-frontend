@@ -18,7 +18,7 @@ export class PersonsPage implements OnInit {
   public selectedPersons: IPerson[] = [];
 
   public layoutOptions: ISelectableOption<Layout>[] = [];
-  public selectedPersonLayout: Layout[] = [Layout.Vertical];
+  public selectedPersonLayout: Layout = Layout.Vertical;
 
   public cardMessage: string = "";
 
@@ -68,5 +68,9 @@ export class PersonsPage implements OnInit {
 
   public onSaveClicked(): void {
     //this.localStorageService.set(LocalStorageKeys.PERSONS, this.persons);
+  }
+
+  public setOptionValue<T>(property: string, value: T | T[]): void {
+    (this as any)[property] = value;
   }
 }
