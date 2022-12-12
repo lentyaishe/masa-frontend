@@ -1,25 +1,26 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { ISelectableOption } from "src/app/entities";
 import { Layout } from "src/app/enums";
 import { v4 as uuidv4 } from "uuid";
 
 @Component({
-  selector: "mf-generic-radio-button",
-  templateUrl: "./generic-radio-button.component.html",
-  styleUrls: ["./generic-radio-button.component.less"]
+  selector: "mf-generic-multiselect",
+  templateUrl: "./generic-multiselect.component.html",
+  styleUrls: ["./generic-multiselect.component.less"]
 })
-export class GenericRadioButtonComponent<T> implements OnInit, AfterViewInit {
-  @Input() value: T | undefined;
+export class GenericMultiselectComponent<T> implements OnInit, AfterViewInit {
+  @Input() value: T[] | undefined;
   @Input() options: ISelectableOption<T>[] = [];
   @Input() layout: Layout = Layout.Vertical;
   @Input() isMultiselect: boolean = false;
 
-  @Output() valueChange: EventEmitter<T> = new EventEmitter<T>();
+  @Output() valueChange: EventEmitter<T[]> = new EventEmitter<T[]>();
 
   @ViewChild("optionsWrapper") optionsWrapper: ElementRef | undefined;
     
   public Layout = Layout;
 
+  public multiselectedValue: T[] = [];
   public unique: string = uuidv4();
 
   constructor(
@@ -40,7 +41,18 @@ export class GenericRadioButtonComponent<T> implements OnInit, AfterViewInit {
     wrapper.style.backgroundColor = "silver";
   }
 
-  public onChange(): void {
-    this.valueChange.emit(this.value);
+  public onChange(option: T): void {
+    if (!this.isMultiselect) {
+      this.valueChange.emit([option]);
+    }
+    else {
+      const index: number | undefined = this.value?.indexOf(option);
+      if (index !== undefined && index > -1) {
+        this.value?.splice(index, 1);
+      }
+      else {
+        this.value?.push(option);
+      }
+    }
   }
 }
