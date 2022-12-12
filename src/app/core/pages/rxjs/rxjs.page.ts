@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { map, Observable, Observer, of, Subscription, tap } from "rxjs";
+import { map, Observable, Observer, of, Subscription, take, tap } from "rxjs";
 
 @Component({
   selector: "app-rxjs",
@@ -63,12 +63,12 @@ export class RxjsPage {
   }
 
   private subscriptionWithMap(): void {
-        // Observable creation
+    // Observable creation
     const observable$: Observable<number> = of(1, 2, 3);
 
     observable$.pipe(
       map((item: number) => {
-        return item + '-cool!';
+        return item + "-cool!";
       }),
       tap((item: string) => console.log(item)),
       map((item: string) => {
