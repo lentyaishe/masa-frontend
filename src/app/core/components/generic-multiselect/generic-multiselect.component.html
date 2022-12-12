@@ -1,0 +1,34 @@
+<div #optionsWrapper class="mf-generic-multiselect">
+    <div
+        *ngFor="let option of options; index as i"
+        class="option-wrapper"
+        [ngClass]="layout">
+
+        <div
+            class="option-switch-wrapper" 
+            [ngSwitch]="isMultiselect"
+            >
+            
+            <input 
+                *ngSwitchCase="false" 
+                type="radio" 
+                [id]="unique + i" 
+                [name]="unique" 
+                [value]="option.value"
+                [(ngModel)]="value && value.length === 1 ? value[0] : value"
+                (change)="onChange(option.value)"
+                />
+
+            <input
+                *ngSwitchDefault
+                type="checkbox" 
+                [id]="unique + i" 
+                [checked]="value ? value.indexOf(option.value) > -1 : false"
+                (change)="onChange(option.value)"
+                />
+        </div>
+
+        <label class="option-title" [for]="unique + i" [innerText]="option.title"></label>
+            
+    </div>
+</div>

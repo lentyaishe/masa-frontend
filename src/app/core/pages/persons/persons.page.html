@@ -11,21 +11,22 @@
     <div (click)="onClickMeClick()">Click on me!!</div>
 
     <br />
-    <mf-generic-radio-button 
+    <mf-generic-multiselect 
         [options]="layoutOptions"
         [layout]="Layout.Horizontal"
+        [isMultiselect]="false"
         [(value)]="selectedPersonLayout"
         >
-    </mf-generic-radio-button>
+    </mf-generic-multiselect>
 
     <br />
-    <mf-generic-radio-button 
+    <mf-generic-multiselect 
         [options]="personOptions"
-        [layout]="selectedPersonLayout"
+        [layout]="selectedPersonLayout[0]"
         [isMultiselect]="true"
-        [(value)]="selectedPerson"
+        [(value)]="selectedPersons"
         >
-    </mf-generic-radio-button>
+    </mf-generic-multiselect>
     <br />
 
     <div [innerHtml]="cardMessage"></div>
