@@ -67,7 +67,7 @@ export class PersonsPage implements OnInit {
   }
 
   public onSaveClicked(): void {
-    //this.localStorageService.set(LocalStorageKeys.PERSONS, this.persons);
+    this.personService.save();
   }
 
   public setOptionValue<T>(property: string, value: T | T[]): void {

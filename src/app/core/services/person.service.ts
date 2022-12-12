@@ -17,6 +17,7 @@ interface IPersonService {
     persons: IPerson[];
 
     initialize(): void;
+    save(): void;
 }
 
 @Injectable({
@@ -28,17 +29,21 @@ export class PersonService implements IPersonService {
     constructor(
         private localStorageService: LocalStorageService
     ) { }
-    
+
     public get persons(): IPerson[] {
         return this._persons;
     }
-    
+
     public initialize(): void {
         const persons: storedPerson[] | null = this.localStorageService.get(LocalStorageKeys.PERSONS);
 
         if (persons) {
             this._persons = persons.map((person: storedPerson) => this.toLocal(person));
         }
+    }
+
+    public save(): void {
+        this.localStorageService.set(LocalStorageKeys.PERSONS, this.persons);
     }
 
     private toLocal(person: storedPerson): IPerson {
