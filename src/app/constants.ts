@@ -4,4 +4,5 @@ export class LocalStorageKeys {
 
 export class States {
     public static persons: string = "persons";
+    public static rxjs: string = "rxjs";
 }

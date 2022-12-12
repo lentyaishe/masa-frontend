@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { LocalStorageKeys } from "src/app/constants";
 import { IPerson, ISelectableOption } from "src/app/entities";
 import { Layout } from "src/app/enums";
 import { PersonService } from "../../services/person.service";
