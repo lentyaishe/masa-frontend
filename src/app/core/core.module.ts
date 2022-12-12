@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
 import { States } from "../constants";
 import { PersonCardComponent } from "./components/person-card/person-card.component";
 import { PersonsPage } from "./pages/persons/persons.page";
@@ -11,10 +12,12 @@ import { RadioButtonComponent } from "./components/radio-button/radio-button.com
 import { GenericMultiselectComponent } from "./components/generic-multiselect/generic-multiselect.component";
 import { DoublePipe } from "./pipes/double.pipe";
 import { PersonService } from "./services/person.service";
+import { LoginPage } from "./pages/login/login.page";
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },
   { path: States.rxjs, component: RxjsPage },
+  { path: States.login, component: LoginPage },
   { path: "**", component: NotFoundPage }
 ];
 
@@ -26,12 +29,14 @@ const routes: Routes = [
     RadioButtonComponent,
     GenericMultiselectComponent,
     DoublePipe,
-    RxjsPage
+    RxjsPage,
+    LoginPage
   ],
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule
   ],
   exports: [
       PersonCardComponent

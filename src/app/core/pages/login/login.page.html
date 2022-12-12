@@ -1,0 +1,15 @@
+<div class="login-page">
+    <div class="title">Login</div>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="user.username" />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="user.password" />
+    </div>
+    <div>
+        <button (click)="onLoginClick()">Login</button>
+        <button (click)="onClearClick()">Clear</button>
+    </div>
+</div>

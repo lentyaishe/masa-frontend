@@ -12,3 +12,13 @@ export interface IPerson {
     birthdate: Date;
     salary: number;
 }
+
+export interface IUser {
+  username: string;
+  password: string;
+}
+
+export interface IUserInfo {
+    id: number;
+    name: string;
+}
