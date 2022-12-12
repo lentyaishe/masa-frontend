@@ -9,15 +9,15 @@ import { v4 as uuidv4 } from "uuid";
   styleUrls: ["./generic-multiselect.component.less"]
 })
 export class GenericMultiselectComponent<T> implements OnInit, AfterViewInit {
-  @Input() value: T[] | undefined;
+  @Input() value: T | T[] | undefined;
   @Input() options: ISelectableOption<T>[] = [];
   @Input() layout: Layout = Layout.Vertical;
   @Input() isMultiselect: boolean = false;
 
-  @Output() valueChange: EventEmitter<T[]> = new EventEmitter<T[]>();
+  @Output() valueChange: EventEmitter<T | T[]> = new EventEmitter<T | T[]>();
 
   @ViewChild("optionsWrapper") optionsWrapper: ElementRef | undefined;
-    
+
   public Layout = Layout;
 
   public multiselectedValue: T[] = [];
@@ -26,7 +26,7 @@ export class GenericMultiselectComponent<T> implements OnInit, AfterViewInit {
   constructor(
     private element: ElementRef
   ) {
-    
+
   }
 
   public ngOnInit(): void {
@@ -46,13 +46,22 @@ export class GenericMultiselectComponent<T> implements OnInit, AfterViewInit {
       this.valueChange.emit([option]);
     }
     else {
-      const index: number | undefined = this.value?.indexOf(option);
+      const temp: T[] = this.value as T[];
+      const index: number | undefined = temp?.indexOf(option);
       if (index !== undefined && index > -1) {
-        this.value?.splice(index, 1);
+        temp?.splice(index, 1);
       }
       else {
-        this.value?.push(option);
+        temp?.push(option);
       }
     }
+  }
+
+  public isChecked(option: T): boolean {
+    if (this.value) {
+      const temp: T[] = this.value as T[];
+      return temp.indexOf(option) > -1;
+    }
+    return false;
   }
 }

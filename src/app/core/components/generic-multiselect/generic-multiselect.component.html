@@ -5,30 +5,30 @@
         [ngClass]="layout">
 
         <div
-            class="option-switch-wrapper" 
+            class="option-switch-wrapper"
             [ngSwitch]="isMultiselect"
             >
-            
-            <input 
-                *ngSwitchCase="false" 
-                type="radio" 
-                [id]="unique + i" 
-                [name]="unique" 
+
+            <input
+                *ngSwitchCase="false"
+                type="radio"
+                [id]="unique + i"
+                [name]="unique"
                 [value]="option.value"
-                [(ngModel)]="value && value.length === 1 ? value[0] : value"
+                [(ngModel)]="value"
                 (change)="onChange(option.value)"
                 />
 
             <input
                 *ngSwitchDefault
-                type="checkbox" 
-                [id]="unique + i" 
-                [checked]="value ? value.indexOf(option.value) > -1 : false"
+                type="checkbox"
+                [id]="unique + i"
+                [checked]="isChecked(option.value)"
                 (change)="onChange(option.value)"
                 />
         </div>
 
         <label class="option-title" [for]="unique + i" [innerText]="option.title"></label>
-            
+
     </div>
 </div>
