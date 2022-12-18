@@ -1,0 +1,51 @@
+.flex-basics-page {
+
+    // // Oldest approach
+    // &.external-container {
+    //     height: 250px;
+
+    //     .internal-element {
+    //         text-align: center;
+    //         line-height: 250px; // 100% not workin. MUST have hardcoded value
+    //     }
+    // }
+
+    // // More modern but still old approach
+    // &.external-container {
+    //     position: relative;
+    //     height: 100%;
+
+    //     .internal-element {
+    //         position: absolute;
+    //         top: 50%;
+    //         left: 50%;
+    //         transform: translate(-50%, -50%);
+    //         text-align: center;
+    //         width: 100%;
+    //     }
+    // }
+
+    &.external-container {
+        height: 250px;
+        display: flex;
+        // justify-content: center;
+        // align-items: center;
+
+        .internal-element {
+            align-self: center;
+            justify-self: center;
+        }
+    }
+
+    // &.abc {
+    //     display: flex;
+
+    //     .def-item {
+    //         flex-grow: 1;
+    //     }
+
+    //     .flex-1 {
+    //         flex: 1 0 50%;
+    //     }
+    // }
+}

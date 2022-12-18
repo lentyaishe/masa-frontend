@@ -6,6 +6,7 @@ export class States {
     public static persons: string = "persons";
     public static rxjs: string = "rxjs";
     public static login: string = "login";
+    public static flexBasics: string = "flex-basics";
 }
 
 export class Endpoints {
