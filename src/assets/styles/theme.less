@@ -1,16 +1,22 @@
 @brand-color: dodgerblue;
+@font-min-size: 12px;
 @font-base-size: 16px;
+@font-max-size: 20px;
 @font-family: "Lato";
 @border-width: 1px;
 @header-height: 3em;
 @footer-height: 2.5em;
 @footer-with-border: @border-width + @footer-height + @border-width;
 
+.full-width {
+    width: 100%;
+}
+
 .title {
     font-size: 1.25em;
     font-weight: bold;
 }
- 
+
 .horizontal-percent-width(@width-in-percent: 100%) {
     width: @width-in-percent;
     display: inline-block;

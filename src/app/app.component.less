@@ -1,6 +1,35 @@
 @import "../assets/styles/theme.less";
+@import "../assets/styles/flex.less";
 
 .mf-app-component {
+    height: 100vh;
     color: @brand-color;
-    .title;
+
+    .mf-layout-wrapper {
+        height: 100%;
+
+        .mf-header,
+        .mf-menu,
+        .mf-content,
+        .mf-footer {
+            border: 1px solid blue;
+        }
+
+        .mf-header {
+            min-height: @header-height;
+        }
+
+        .mf-menu {
+            min-width: 25%;
+        }
+
+        .mf-footer {
+            min-height: @footer-height;
+        }
+
+        .mf-content {
+            max-height: calc(100vh - @header-height - @footer-height);
+            overflow-y: auto;
+        }
+    }
 }
