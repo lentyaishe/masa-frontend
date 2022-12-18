@@ -1,3 +1,37 @@
 <div class="mf-app-component">
-    <router-outlet></router-outlet>
+    <div class="mf-flex mf-flex-column mf-layout-wrapper">
+        <div class="mf-flex mf-header mf-flex-center title">
+            Header
+        </div>
+        <div class="mf-flex mf-flex-col-1 mf-menu-rest-wrapper" [ngClass]="{'mf-flex-row-reverse': isRtl, 'mf-flex-row': !isRtl}">
+            <div class="mf-menu title">
+                <button
+                    mat-stroked-button
+                    color="basic"
+                    class="full-width"
+                    [routerLink]="States.persons"
+                    >
+                    Persons
+                </button>
+
+                <button
+                    mat-stroked-button
+                    color="basic"
+                    class="full-width"
+                    [routerLink]="States.flexBasics"
+                    >
+                    Flex basics
+                </button>
+            </div>
+            <div class="mf-flex mf-flex-column mf-flex-col-1 mf-content-footer-wrapper">
+                <div class="mf-flex-col-1 mf-content">
+                  <router-outlet></router-outlet>
+                </div>
+                <div
+                    class="mf-flex mf-footer mf-flex-center title"
+                    [innerText]="layoutService.footerMessage">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IPerson, ISelectableOption } from "src/app/entities";
 import { Layout } from "src/app/enums";
+import { LayoutService } from "src/app/services/layout.service";
 import { PersonService } from "../../services/person.service";
 
 @Component({
@@ -25,9 +26,10 @@ export class PersonsPage implements OnInit {
   public htmlProperty: string = "<i>La-la!!</i>"
 
   constructor(
-    public personService: PersonService
+    public personService: PersonService,
+    layoutService: LayoutService
   ) {
-
+    layoutService.footerMessage = "Now we are on a Persons page";
   }
 
   public ngOnInit(): void {

@@ -21,6 +21,31 @@
 }
 
 body {
-    font-size: @font-base-size;
     font-family: @font-family;
+    margin: 0;
+    overflow: hidden;
 }
+
+// all sizes up to width of 800px
+@media only screen and (max-width: 800px) {
+    body {
+        font-size: @font-min-size;
+    }
+}
+
+// Starting width 800px till 1024px
+@media only screen and (min-width: 800px) {
+    body {
+        font-size: @font-base-size;
+    }
+}
+
+// Starting width of 1024px
+@media only screen and (min-width: 1024px) {
+    body {
+        font-size: @font-max-size;
+    }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

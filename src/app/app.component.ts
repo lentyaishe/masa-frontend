@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { States } from "./constants";
+import { LayoutService } from "./services/layout.service";
 
 @Component({
     selector: "app-root",
@@ -6,5 +8,12 @@ import { Component } from "@angular/core";
     styleUrls: ["./app.component.less"]
 })
 export class AppComponent {
-    title = "masa-frontend";
+    public States = States;
+
+    public title: string = "masa-frontend";
+    public isRtl: boolean = false;
+
+    constructor(
+        public layoutService: LayoutService
+    ) {}
 }

@@ -13,7 +13,7 @@ import { GenericMultiselectComponent } from "./components/generic-multiselect/ge
 import { DoublePipe } from "./pipes/double.pipe";
 import { PersonService } from "./services/person.service";
 import { LoginPage } from "./pages/login/login.page";
-import { FlexBasicsPage } from './pages/flex-basics/flex-basics.component';
+import { FlexBasicsPage } from "./pages/flex-basics/flex-basics.component";
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },
