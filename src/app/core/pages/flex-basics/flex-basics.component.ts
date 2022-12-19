@@ -9,11 +9,16 @@ import { States } from "src/app/constants";
   styleUrls: ["./flex-basics.page.less"]
 })
 export class FlexBasicsPage extends BasePage {
+  private X = {};
+
   constructor(
     layoutService: LayoutService
   ) {
     super(layoutService, States.flexBasics);
   }
 
-  protected initialize(): void { }
+  protected initialize(): void {
+    // Raises unhandled exception
+    // (this.X as any).raise.error = "12";
+  }
 }
