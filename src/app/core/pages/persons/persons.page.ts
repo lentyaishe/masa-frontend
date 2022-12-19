@@ -27,6 +27,9 @@ export class PersonsPage extends BasePage {
   public myProperty: string = "Hooray!!";
   public htmlProperty: string = "<i>La-la!!</i>"
 
+  public filterPersonBy: string = "";
+  public filteredPersons: IPerson[] = [];
+
   constructor(
     public personService: PersonService,
     layoutService: LayoutService
@@ -56,7 +59,7 @@ export class PersonsPage extends BasePage {
         };
       });
 
-      // this.selectedPersons = this.personService.persons.length > 0 ? [this.personService.persons[0]] : [];
+      this.filteredPersons = this.personService.persons;
     }
   }
 
@@ -78,5 +81,12 @@ export class PersonsPage extends BasePage {
 
   public setOptionValue<T>(property: string, value: T | T[]): void {
     (this as any)[property] = value;
+  }
+
+  public onFilterPersonChange(): void {
+    const filterBy: string = this.filterPersonBy.toLowerCase();
+    this.filteredPersons = this.personService.persons.filter((person: IPerson) => {
+      return person.name.toLowerCase().indexOf(filterBy) > -1 || person.email.toLowerCase().indexOf(filterBy) > -1;
+    });
   }
 }
