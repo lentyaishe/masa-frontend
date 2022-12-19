@@ -2,11 +2,15 @@
 @import "../assets/styles/flex.less";
 
 .mf-app-component {
-    height: 100vh;
+    height: 100%;
     color: @brand-color;
 
     .mf-layout-wrapper {
         height: 100%;
+
+        .mf-header {
+            min-height: @header-height;
+        }
 
         .mf-header,
         .mf-menu,
@@ -15,21 +19,22 @@
             border: 1px solid blue;
         }
 
-        .mf-header {
-            min-height: @header-height;
-        }
+        .mf-menu-rest-wrapper {
+            height: calc(100% - @header-height - @border-width - @border-width);
 
-        .mf-menu {
-            min-width: 25%;
-        }
 
-        .mf-footer {
-            min-height: @footer-height;
-        }
+            .mf-menu {
+                min-width: 25%;
+            }
 
-        .mf-content {
-            max-height: calc(100vh - @header-height - @footer-height);
-            overflow-y: auto;
+            .mf-footer {
+                min-height: @footer-height;
+            }
+
+            .mf-content {
+                max-height: calc(100% - @footer-height);
+                overflow-y: auto;
+            }
         }
     }
 }

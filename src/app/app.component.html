@@ -1,7 +1,9 @@
 <div class="mf-app-component">
     <div class="mf-flex mf-flex-column mf-layout-wrapper">
-        <div class="mf-flex mf-header mf-flex-center title">
-            Header
+        <div class="mf-flex mf-header mf-flex-center">
+            <div class="title">
+                Header
+            </div>
         </div>
         <div class="mf-flex mf-flex-col-1 mf-menu-rest-wrapper" [ngClass]="{'mf-flex-row-reverse': isRtl, 'mf-flex-row': !isRtl}">
             <div class="mf-menu title">
@@ -27,9 +29,8 @@
                 <div class="mf-flex-col-1 mf-content">
                   <router-outlet></router-outlet>
                 </div>
-                <div
-                    class="mf-flex mf-footer mf-flex-center title"
-                    [innerText]="layoutService.footerMessage">
+                <div class="mf-flex mf-footer mf-flex-center">
+                    <div class="title" [innerText]="layoutService.footerMessage"></div>
                 </div>
             </div>
         </div>
