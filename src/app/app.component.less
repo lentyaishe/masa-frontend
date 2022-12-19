@@ -10,6 +10,13 @@
 
         .mf-header {
             min-height: @header-height;
+            position: relative;
+
+            .mf-toggle-direction {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
         }
 
         .mf-header,
@@ -25,6 +32,13 @@
 
             .mf-menu {
                 min-width: 25%;
+
+                .title {
+
+                    .mat-basic {
+                        color: red;
+                    }
+                }
             }
 
             .mf-footer {
@@ -34,6 +48,32 @@
             .mf-content {
                 max-height: calc(100% - @footer-height);
                 overflow-y: auto;
+            }
+        }
+    }
+
+    &.mf-ltr {
+
+        .mf-layout-wrapper {
+
+            .mf-header {
+
+                .mf-toggle-direction {
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &.mf-rtl {
+
+        .mf-layout-wrapper {
+
+            .mf-header {
+
+                .mf-toggle-direction {
+                    right: 0;
+                }
             }
         }
     }

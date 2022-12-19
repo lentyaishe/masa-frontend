@@ -1,35 +1,42 @@
-<div class="mf-app-component">
+<div class="mf-app-component {{layoutService.layoutDirection}}">
     <div class="mf-flex mf-flex-column mf-layout-wrapper">
         <div class="mf-flex mf-header mf-flex-center">
+            <div class="mf-toggle-direction">
+                <button mat-icon-button (click)="onChangeDirectionClick()">
+                    <mat-icon>sync</mat-icon>
+                </button>
+            </div>
             <div class="title">
                 Header
             </div>
         </div>
-        <div class="mf-flex mf-flex-col-1 mf-menu-rest-wrapper" [ngClass]="{'mf-flex-row-reverse': isRtl, 'mf-flex-row': !isRtl}">
-            <div class="mf-menu title">
-                <button
-                    mat-stroked-button
-                    color="basic"
-                    class="full-width"
-                    [routerLink]="States.persons"
-                    >
-                    Persons
-                </button>
+        <div class="mf-flex mf-flex-col-1 mf-menu-rest-wrapper">
+            <div class="mf-menu">
+                <div class="title">
+                    <button
+                        mat-stroked-button
+                        color="basic"
+                        class="full-width"
+                        [routerLink]="States.persons"
+                        >
+                        Persons
+                    </button>
 
-                <button
-                    mat-stroked-button
-                    color="basic"
-                    class="full-width"
-                    [routerLink]="States.flexBasics"
-                    >
-                    Flex basics
-                </button>
+                    <button
+                        mat-stroked-button
+                        color="basic"
+                        class="full-width"
+                        [routerLink]="States.flexBasics"
+                        >
+                        Flex basics
+                    </button>
+                </div>
             </div>
             <div class="mf-flex mf-flex-column mf-flex-col-1 mf-content-footer-wrapper">
                 <div class="mf-flex-col-1 mf-content">
                   <router-outlet></router-outlet>
                 </div>
-                <div class="mf-flex mf-footer mf-flex-center">
+                <div class="mf-flex mf-footer">
                     <div class="title" [innerText]="layoutService.footerMessage"></div>
                 </div>
             </div>
