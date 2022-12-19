@@ -36,8 +36,9 @@
     <br />
     <br />
 
+    <input type="text" [(ngModel)]="filterPersonBy" (keyup)="onFilterPersonChange()" />
 
-    <mf-person-card *ngFor="let person of personService.persons; index as i"
+    <mf-person-card *ngFor="let person of (personService.persons | filter : filterPersonBy : 'name' : 'email'); index as i"
         [(personName)]="person.name"
         [(personId)]="person.id"
         [(personAddress)]="person.address"
@@ -51,6 +52,8 @@
     </mf-person-card>
 
     <div *ngIf="!personService.persons">No data</div>
+
+    <div *ngIf="personService.persons && filteredPersons.length === 0">No filtered results</div>
 
     <br />
     <br />
