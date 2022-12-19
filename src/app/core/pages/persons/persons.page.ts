@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { IPerson, ISelectableOption } from "src/app/entities";
 import { Layout } from "src/app/enums";
 import { LayoutService } from "src/app/services/layout.service";
@@ -9,7 +10,7 @@ import { PersonService } from "../../services/person.service";
   templateUrl: "./persons.page.html",
   styleUrls: ["./persons.page.less"]
 })
-export class PersonsPage implements OnInit {
+export class PersonsPage implements OnInit, OnDestroy {
 
   public JSON = JSON;
   public Layout = Layout;
@@ -25,11 +26,19 @@ export class PersonsPage implements OnInit {
   public myProperty: string = "Hooray!!";
   public htmlProperty: string = "<i>La-la!!</i>"
 
+  private _subscriptions: Subscription[] = [];
+
   constructor(
     public personService: PersonService,
     layoutService: LayoutService
   ) {
     layoutService.footerMessage = "Now we are on a Persons page";
+
+    this._subscriptions.push(
+      layoutService.onLayoutDirectionChanged.subscribe(() => {
+        console.log(`Persons page: layout changed happened`);
+      })
+    );
   }
 
   public ngOnInit(): void {
@@ -54,6 +63,11 @@ export class PersonsPage implements OnInit {
       // this.selectedPersons = this.personService.persons.length > 0 ? [this.personService.persons[0]] : [];
     }
   }
+
+  public ngOnDestroy(): void {
+    this._subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
 
   public onClickMeClick(): void {
     this.myProperty = "New data!!";
