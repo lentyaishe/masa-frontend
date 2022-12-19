@@ -28,10 +28,10 @@ export class PersonCardComponent implements OnInit {
   @Output() personAddressChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() personEmailChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() personGenderChange: EventEmitter<string> = new EventEmitter<string>();
-  
+
   @Output() onModeChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onSaveClicked: EventEmitter<void> = new EventEmitter<void>();
-  
+
   public ViewMode = ViewMode;
 
   public buttonTitle: string = "";
@@ -44,11 +44,11 @@ export class PersonCardComponent implements OnInit {
   constructor() {
     this.setButtonTitle();
 
-    console.log("Name in ctor: ", this.personName);
+    // console.log("Name in ctor: ", this.personName); // still null
   }
 
   public ngOnInit(): void {
-    console.log("Name in OnInit: ", this.personName);
+    // console.log("Name in OnInit: ", this.personName); // only here the value is set to the component propert
   }
 
   public onToggleModeClick(): void {
