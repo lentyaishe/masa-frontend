@@ -14,6 +14,7 @@ import { DoublePipe } from "./pipes/double.pipe";
 import { PersonService } from "./services/person.service";
 import { LoginPage } from "./pages/login/login.page";
 import { FlexBasicsPage } from "./pages/flex-basics/flex-basics.component";
+import { MatInputModule } from "@angular/material/input";
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },
@@ -39,7 +40,8 @@ const routes: Routes = [
     FormsModule,
     CommonModule,
     RouterModule.forChild(routes),
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule
   ],
   exports: [
       PersonCardComponent
