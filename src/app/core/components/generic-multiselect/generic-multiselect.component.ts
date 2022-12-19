@@ -30,12 +30,12 @@ export class GenericMultiselectComponent<T> implements OnInit, AfterViewInit {
   }
 
   public ngOnInit(): void {
-    console.log("ngOnInit: ", this.element);
-    console.log("ngOnInit: ", this.optionsWrapper);
+    // console.log("ngOnInit: ", this.element); // exists
+    // console.log("ngOnInit: ", this.optionsWrapper); // not available yet
   }
 
   public ngAfterViewInit(): void {
-    console.log("ngAfterViewInit: ", this.optionsWrapper);
+    // console.log("ngAfterViewInit: ", this.optionsWrapper); // on;y here child element is starting to be available
 
     const wrapper: HTMLDivElement = this.optionsWrapper?.nativeElement;
     wrapper.style.backgroundColor = "silver";

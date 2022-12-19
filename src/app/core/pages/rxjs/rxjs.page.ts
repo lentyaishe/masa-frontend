@@ -1,14 +1,20 @@
+import { LayoutService } from "src/app/services/layout.service";
 import { Component } from "@angular/core";
-import { map, Observable, Observer, of, Subscription, take, tap } from "rxjs";
+import { map, Observable, Observer, of, Subscription, tap } from "rxjs";
+import { BasePage } from "../base-page";
+import { States } from "src/app/constants";
 
 @Component({
   selector: "app-rxjs",
   templateUrl: "./rxjs.page.html",
   styleUrls: ["./rxjs.page.css"]
 })
-export class RxjsPage {
+export class RxjsPage extends BasePage {
 
-  constructor() {
+  constructor(
+    layoutService: LayoutService
+  ) {
+    super(layoutService, States.rxjs);
     // this.simpleSubscription();
 
     // this.fullSubscription();
@@ -17,6 +23,9 @@ export class RxjsPage {
 
     this.subscriptionWithMap();
   }
+
+  protected initialize(): void { }
+
 
   private simpleSubscription(): void {
     // Observable creation
