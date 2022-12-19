@@ -7,3 +7,8 @@ export enum Layout {
     Vertical = "vertical",
     Horizontal = "horizontal"
 }
+
+export enum LayoutDirection {
+    Rtl = "mf-rtl",
+    Ltr = "mf-ltr"
+}
