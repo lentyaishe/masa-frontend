@@ -9,6 +9,7 @@ export class States {
     public static flexBasics: string = "flex-basics";
 
     public static boardTypes: string = "board-types";
+    public static boardTypeById: string = `${States.boardTypes}/:id`;
 }
 
 export class Endpoints {
@@ -18,4 +19,5 @@ export class Endpoints {
     public static userById: string = `${Endpoints.baseUrl}user/`;
 
     public static boardTypes: string = `${Endpoints.baseUrl}general/board-types/`;
+    public static boardType: string = `${Endpoints.baseUrl}general/board-type/`;
 }

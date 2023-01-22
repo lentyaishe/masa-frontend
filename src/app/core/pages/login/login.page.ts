@@ -25,7 +25,7 @@ export class LoginPage {
             .subscribe(() => {
                 console.log("Logged in");
 
-                this.router.navigate([States.boardTypes]);
+                this.router.navigate([States.boardTypes, 2]);
 
                 // this.userService.getUserById(2)
                 //     .subscribe((result: IUserInfo) => console.log(result));

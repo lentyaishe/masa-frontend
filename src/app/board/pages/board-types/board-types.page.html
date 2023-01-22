@@ -1,4 +1,5 @@
-<div class="board-types-page">
+<button (click)="onUpdateClick()">Update</button>
+<div *ngIf="boardTypes$ | async as boardTypes" class="board-types-page">
     <div *ngFor="let boardType of boardTypes" class="board-type-wrapper">
         <span [innerText]="boardType.id"></span>
         <span [innerText]="boardType.title"></span>

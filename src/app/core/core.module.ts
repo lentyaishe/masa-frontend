@@ -16,6 +16,7 @@ import { LoginPage } from "./pages/login/login.page";
 import { FlexBasicsPage } from "./pages/flex-basics/flex-basics.component";
 import { MatInputModule } from "@angular/material/input";
 import { FilterObjectPipe } from "./pipes/filter.pipe";
+import { AuthenticationGuard } from "./guards/authentication.guard";
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },
@@ -47,7 +48,8 @@ const routes: Routes = [
   ],
   exports: [
       PersonCardComponent
-  ]
+    ],
+  providers: [AuthenticationGuard]
 })
 export class CoreModule {
   constructor(
