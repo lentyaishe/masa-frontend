@@ -22,3 +22,9 @@ export interface IUserInfo {
     id: number;
     name: string;
 }
+
+export interface IBoardType {
+    id: number;
+    title: string;
+}
+

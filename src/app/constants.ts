@@ -7,6 +7,8 @@ export class States {
     public static rxjs: string = "rxjs";
     public static login: string = "login";
     public static flexBasics: string = "flex-basics";
+
+    public static boardTypes: string = "board-types";
 }
 
 export class Endpoints {
@@ -14,4 +16,6 @@ export class Endpoints {
 
     public static login: string = `${Endpoints.baseUrl}auth/login`;
     public static userById: string = `${Endpoints.baseUrl}user/`;
+
+    public static boardTypes: string = `${Endpoints.baseUrl}general/board-types/`;
 }

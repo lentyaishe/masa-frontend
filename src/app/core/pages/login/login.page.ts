@@ -1,42 +1,45 @@
-import { IUserInfo } from './../../../entities';
 import { Component } from "@angular/core";
 import { IUser } from "src/app/entities";
-import { UserService } from "./../../services/user.service";
+import { AuthenticationService } from "../../services/authentication.service";
+import { Router } from "@angular/router";
+import { States } from "src/app/constants";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.page.html",
-  styleUrls: ["./login.page.less"]
+    selector: "app-login",
+    templateUrl: "./login.page.html",
+    styleUrls: ["./login.page.less"]
 })
 export class LoginPage {
-  public user: IUser ;
+    public user: IUser;
 
-  constructor(
-    private userService: UserService
-  ) {
-    this.user = {} as any;
-    this.initialize();
-  }
+    constructor(
+        private authenticationService: AuthenticationService,
+        private router: Router
+    ) {
+        this.user = {} as any;
+        this.initialize();
+    }
 
-  public onLoginClick(): void {
-    this.userService.login(this.user)
-      .subscribe(() => {
-        console.log("Logged in");
+    public onLoginClick(): void {
+        this.authenticationService.login(this.user)
+            .subscribe(() => {
+                console.log("Logged in");
 
-        this.userService.getUserById(2)
-          .subscribe((result: IUserInfo) => console.log(result));
-      });
+                this.router.navigate([States.boardTypes]);
 
-  }
+                // this.userService.getUserById(2)
+                //     .subscribe((result: IUserInfo) => console.log(result));
+            });
+    }
 
-  public onClearClick(): void {
-    this.initialize();
-  }
+    public onClearClick(): void {
+        this.initialize();
+    }
 
-  private initialize(): void {
-    this.user = {
-      username: "admin",
-      password: "password"
-    };
-  }
+    private initialize(): void {
+        this.user = {
+            username: "lentyai",
+            password: "12345678"
+        };
+    }
 }

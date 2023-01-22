@@ -15,7 +15,7 @@ import { PersonService } from "./services/person.service";
 import { LoginPage } from "./pages/login/login.page";
 import { FlexBasicsPage } from "./pages/flex-basics/flex-basics.component";
 import { MatInputModule } from "@angular/material/input";
-import { FilterObjectPipe } from './pipes/filter.pipe';
+import { FilterObjectPipe } from "./pipes/filter.pipe";
 
 const routes: Routes = [
   { path: States.persons, component: PersonsPage },

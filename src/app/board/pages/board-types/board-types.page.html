@@ -1,0 +1,6 @@
+<div class="board-types-page">
+    <div *ngFor="let boardType of boardTypes" class="board-type-wrapper">
+        <span [innerText]="boardType.id"></span>
+        <span [innerText]="boardType.title"></span>
+    </div>
+</div>
