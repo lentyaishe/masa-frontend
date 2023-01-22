@@ -18,8 +18,12 @@ interface IHttpRequestOptions {
 }
 
 interface IAuthenticationService {
+    isAuthenticated: boolean;
+
     login(user: IUser): Observable<void>;
     get<T>(url: string): Observable<T>;
+    post<TRequest, TResponse>(url: string, data: TRequest): Observable<TResponse>;
+    put<TRequest, TResponse>(url: string, data: TRequest): Observable<TResponse>;
 }
 
 @Injectable({
@@ -32,6 +36,10 @@ export class AuthenticationService implements IAuthenticationService {
         private httpService: HttpClient
     ) { }
     
+    public get isAuthenticated(): boolean {
+        return !!this._token;
+    }
+
     public login(user: IUser): Observable<void> {
         return this.httpService.post<ILoginResponse>(Endpoints.login, this.toServerUser(user))
             .pipe(
@@ -43,6 +51,14 @@ export class AuthenticationService implements IAuthenticationService {
 
     public get<T>(url: string): Observable<T> {
         return this.httpService.get<T>(url, this.getHttpOptions());
+    }
+
+    public post<TRequest, TResponse>(url: string, data: TRequest): Observable<TResponse> {
+        return this.httpService.post<TResponse>(url, data, this.getHttpOptions());
+    }
+
+    public put<TRequest, TResponse>(url: string, data: TRequest): Observable<TResponse> {
+        return this.httpService.put<TResponse>(url, data, this.getHttpOptions());
     }
 
     private getHttpOptions(): IHttpRequestOptions {

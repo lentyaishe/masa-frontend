@@ -1,3 +1,5 @@
+import { Params } from "@angular/router";
+
 export interface ISelectableOption<T> {
     title: string;
     value: T;
@@ -28,3 +30,6 @@ export interface IBoardType {
     title: string;
 }
 
+export interface IBoardTypesPageParams {
+    id: number;
+}
