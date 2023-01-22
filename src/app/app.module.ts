@@ -10,6 +10,7 @@ import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
 import { CommonModule } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BoardModule } from "./board/board.module";
 
 @NgModule({
     declarations: [
@@ -20,10 +21,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         AppRoutingModule,
         FormsModule,
         CommonModule,
+        BoardModule,
         CoreModule,
         BrowserAnimationsModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
     ],
     exports: [
         FormsModule,

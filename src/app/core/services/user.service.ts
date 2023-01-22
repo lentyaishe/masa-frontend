@@ -1,17 +1,8 @@
 import { Endpoints } from "./../../constants";
 import { map, Observable } from "rxjs";
-import { IUserInfo, IUser } from "./../../entities";
+import { IUserInfo } from "./../../entities";
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-
-interface ILoginRequest {
-  login: string;
-  password: string;
-}
-
-interface ILoginResponse {
-  token: string;
-}
+import { AuthenticationService } from "./authentication.service";
 
 interface IUserResponse {
   id: number;
@@ -21,54 +12,26 @@ interface IUserResponse {
   updateDate: Date;
 }
 
-interface IHttpRequestOptions {
-  headers?: HttpHeaders;
-}
-
 interface IUserService {
-  login(user: IUser): Observable<void>;
+    getUserById(id: number): Observable<IUserInfo>;
 }
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService implements IUserService {
-  private token: string = "";
 
   constructor(
-    private httpService: HttpClient
+    private authenticationService: AuthenticationService
   ) { }
 
-  public login(user: IUser): Observable<void> {
-    return this.httpService.post<ILoginResponse>(Endpoints.login, this.toServerUser(user))
-      .pipe(
-        map((result: ILoginResponse) => {
-          this.token = result.token;
-        })
-      );
-  }
-
   public getUserById(id: number): Observable<IUserInfo> {
-    const headers: HttpHeaders = new HttpHeaders()
-      .set('Authorization',  `Bearer ${this.token}`);
-
-    const options: IHttpRequestOptions = {
-      headers: headers
-    };
-
-    return this.httpService.get<IUserResponse>(`${Endpoints.userById}${id}`, options)
+    return this.authenticationService.get<IUserResponse>(`${Endpoints.userById}${id}`)
       .pipe(
         map((result: IUserResponse) => {
           return this.toLocalUserInfo(result);
         })
     );
-  }
-
-  private toServerUser(user: IUser): ILoginRequest {
-    return {
-      login: user.username,
-      password: user.password
-    };
   }
 
   private toLocalUserInfo(input: IUserResponse): IUserInfo {
